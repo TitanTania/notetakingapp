@@ -26,7 +26,26 @@ function setLocal(inputText, inputDate, inputImprtant, inputIcon)
 
   var newNotes = JSON.stringify(origNotes);
 
-  localStorage.setItem("notes", newNotes);
+  localStorage.setItem("noteList", newNotes);
 }
 
 setLocal("Cry(me a river)", "2018/03/07 10:30:01", true, "tint");
+
+window.onload = function()
+{
+  var notes = getLocal()
+
+  var ulELM = document.querySelector('ul');
+
+  for(var i = 0; i < notes.length; i++)
+  {
+    var liELM = document.createElement('li');
+    var pELM = document.createElement('p');
+
+    pELM.innerHTML = notes[i].text;
+
+    liELM.appendChild(pELM);
+
+    ulELM.appendChild(liELM);
+  }
+}
